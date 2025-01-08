@@ -80,8 +80,6 @@ where
         config.openai_api_url, config.openai_api_dplt_name, config.openai_api_version
     );
 
-    println!("API URL: {}", api_url);
-
     let client = reqwest::Client::new();
     let response = client
         .post(api_url)
@@ -90,8 +88,6 @@ where
         .body(serde_json::to_string(&query).unwrap())
         .send()
         .await;
-
-    println!("Query: {:?}", serde_json::to_string(&query).unwrap());
 
     match &response {
         Ok(r) => {
@@ -131,8 +127,6 @@ where
         "{}/openai/deployments/{}/chat/completions?api-version={}",
         config.openai_api_url, config.openai_api_dplt_name, config.openai_api_version
     );
-    println!("API URL: {}", api_url);
-
     let client = reqwest::Client::new();
     let response = client
         .post(api_url)
@@ -141,9 +135,6 @@ where
         .body(serde_json::to_string(&query).unwrap())
         .send()
         .await;
-
-    println!("Query: {:?}", serde_json::to_string(&query).unwrap());
-    println!("Response: {:?}", response);
 
     match &response {
         Ok(r) => {
